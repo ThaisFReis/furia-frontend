@@ -1,87 +1,71 @@
-# Projeto de Narrativa Interativa
+# Projeto HYPE MODE
 
-Este projeto é uma narrativa interativa onde o usuário pode acompanhar e interagir com diferentes postagens e destaques criados por personagens, com base no desenvolvimento de um enredo dinâmico. Os personagens principais e suas postagens são influenciados pelos atos da história, permitindo uma experiência imersiva e envolvente.
+Este é um projeto desenvolvido para proporcionar uma experiência interativa, permitindo aos usuários participar de enquetes ao vivo, reagir com emotes e visualizar um chat ao vivo durante eventos, como partidas de esports. A aplicação também contém um quiz, o FanDNA Quiz, para determinar o perfil dos usuários baseado nas suas respostas.
 
-## Sumário
+## Funcionalidades
 
-- [Descrição do Projeto](#descrição-do-projeto)
-- [Como Rodar o Projeto](#como-rodar-o-projeto)
-- [Estrutura de Arquivos](#estrutura-de-arquivos)
-- [Tipos de Dados](#tipos-de-dados)
-- [Postagens e Destaques](#postagens-e-destaques)
-- [Licença](#licença)
+### 1. **FanDNA Quiz**
 
-## Descrição do Projeto
+O FanDNA Quiz é um teste interativo onde os usuários respondem perguntas e, ao final, recebem uma análise de seu perfil de fã baseado em suas respostas. As respostas afetam diretamente os resultados finais.
 
-O projeto é um jogo de narrativa com eventos que alteram o comportamento e a interação entre os personagens, incluindo postagens em redes sociais e destaques fixados. Os dados das postagens e dos destaques são apresentados em tempo real, com um sistema de evolução de confiança e escolhas dos usuários.
+- **Tipos de perfis**: Estratégico, Competitivo, Fiel, Analítico, Apaixonado.
+- **Funcionalidade**:
+  - O quiz avança automaticamente para a próxima pergunta ao selecionar uma opção.
+  - Ao final, o usuário vê o resultado e pode reiniciar o quiz.
 
-## Como Rodar o Projeto
+### 2. **Hype Mode**
 
-Para rodar o projeto, siga os passos abaixo:
+O Hype Mode oferece aos usuários uma experiência interativa com uma enquete ao vivo, reações via emotes e um chat ao vivo. Os usuários podem votar em opções e reagir em tempo real durante eventos.
 
-1. **Clonar o repositório:**
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
+#### Funcionalidades:
 
-2. **Instalar as dependências:**
-Certifique-se de ter o Node.js instalado. Se não tiver, baixe [aqui](https://nodejs.org/).
-npm install
+- **Enquete ao vivo**: Os usuários podem votar em uma pergunta relacionada ao evento, e os resultados são atualizados em tempo real.
+- **Emotes**: Os usuários podem reagir usando emotes, como "Hype", "GG", "Love", entre outros. Cada emote tem um contador que reflete o número de vezes que foi usado.
+- **Chat ao vivo**: Uma seção de mensagens ao vivo onde os usuários podem ver o que outros estão dizendo durante o evento.
 
-3. **Rodar o servidor de desenvolvimento:**
-npm run dev
+## Estrutura do Código
 
-4. **Abrir o navegador:**
-Abra seu navegador em [http://localhost:3000](http://localhost:3000).
+### 1. **FanDNA Quiz (`FanDNAQuiz`)**
 
-## Estrutura de Arquivos
+- Utiliza o estado para controlar a pergunta atual, as pontuações e o estado de finalização do quiz.
+- As respostas do usuário alteram a pontuação em várias categorias (estratégico, competitivo, etc.).
+- Após o término do quiz, os resultados são exibidos e o usuário pode reiniciar o quiz.
 
-/src /components # Componentes principais da UI /data # Arquivos de dados, como postagens, destaques e narrativa /hooks # Hooks customizados /styles # Arquivos de estilo, incluindo Tailwind /types # Tipos e interfaces do TypeScript App.tsx # Arquivo principal do React index.tsx # Ponto de entrada do projeto /public index.html # Arquivo HTML principal
+### 2. **Hype Mode (`HypeMode`)**
 
-## Tipos de Dados
+- **Enquete**: O usuário pode votar nas opções fornecidas. Após o voto, os resultados são atualizados.
+- **Emotes**: Permite que os usuários interajam com reações em tempo real, e os contadores de emotes são atualizados com base nas interações.
+- **Chat ao vivo**: Mensagens geradas dinamicamente são adicionadas ao chat a cada 3 segundos para manter o conteúdo atualizado.
 
-O projeto utiliza diversos tipos para estruturar as postagens e destaques. Aqui estão os tipos principais que você vai encontrar no código:
+### Componentes Utilizados:
 
-```typescript
-interface Post {
-  id: string;
-  usuario: string;
-  texto: string;
-  tipo: 'texto' | 'imagem' | 'video' | 'audio';
-  data?: string; // A data da postagem
-}
+- `QuizQuestion`: Exibe a pergunta atual do quiz.
+- `QuizResult`: Exibe os resultados do quiz após a conclusão.
+- `Progress`: Componente de barra de progresso usado para mostrar a porcentagem de votos de cada opção na enquete.
 
-interface Destaque {
-  id: string;
-  usuario: string;
-  titulo: string;
-  descricao: string;
-  tipo: 'texto' | 'imagem' | 'video' | 'audio';
-  descricao_imagem?: string; // Descrição para IA gerar imagens
-  renderizar: string; // Determina quando o destaque será renderizado
-}
-Postagens e Destaques
-As postagens e os destaques são carregados a partir de arquivos de dados em formato JSON. Eles são renderizados com base nas interações do usuário e na sequência dos atos da história.
+## Tecnologias Utilizadas
 
-Exemplo de Postagens
-json
-Copiar
-Editar
-{
-  "usuario": "@gamer_ryan",
-  "texto": "Finalmente platinei Eclipse Online! Depois de 142 horas e 3 rage quits. Nunca mais jogo isso (até lançarem a DLC 😅).",
-  "tipo": "texto",
-  "data": "3 meses atrás"
-}
-Exemplo de Destaques
-json
-Copiar
-Editar
-{
-  "id": "destaque1",
-  "usuario": "gamer_ryan",
-  "titulo": "Top Chefões Injustos",
-  "descricao": "Thread sobre os chefões mais difíceis e injustos dos games.",
-  "tipo": "texto",
-  "renderizar": "inicio_ato_1"
-}
-Licença
-Este projeto está licenciado sob a Licença MIT.
+- **React**: Para criação da interface interativa.
+- **Lucide React**: Ícones utilizados para emotes e interações.
+- **Tailwind CSS**: Para a estilização dos componentes e layout responsivo.
+- **useState, useEffect**: Para gerenciamento de estado e efeitos colaterais (como atualizações do chat ao vivo).
+
+## Instruções de Execução
+
+1. Clone o repositório:
+
+   ```bash
+   git clone https://github.com/seu-usuario/hype-mode.git
+   ```
+
+2. Instale as dependências:
+
+   ```bash
+   yarn install
+   ```
+
+3. Inicie o servidor de desenvolvimento:
+
+   ```bash
+   yarn dev
+   ```
