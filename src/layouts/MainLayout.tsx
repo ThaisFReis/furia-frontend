@@ -1,5 +1,5 @@
-import { Suspense, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Suspense, useEffect, useState } from "react";
+import {Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Sidebar } from "@/components/Sidebar";
 import furia from "@/assets/icon/furia.svg";
 

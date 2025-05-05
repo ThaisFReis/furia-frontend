@@ -2,6 +2,7 @@ import { useState } from "react";
 import { QuizQuestion } from "@/components/QuizQuestion";
 import { QuizResult } from "@/components/QuizResult";
 import { questions } from "@/data/Question";
+import { HelpCircle } from "lucide-react";
 
 const initialScores = {
   estrategia: 0,
@@ -47,6 +48,11 @@ export const FanDNAQuiz = () => {
 
   return (
     <div className="min-h-screen text-white p-8">
+      {/* Título */}
+      <div className="flex items-center justify-center gap-2 mb-8">
+        <HelpCircle className="h-8 w-8 text-yellow-400" />
+        <h1 className="text-3xl font-bold">HYPE MODE</h1>
+      </div>
       {isFinished ? (
         <QuizResult scores={scores} onRestart={restartQuiz} />
       ) : (

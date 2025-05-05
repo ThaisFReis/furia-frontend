@@ -1,4 +1,4 @@
-import { RadarChart } from "@/components/RadarChart";
+import { RadarChart } from "@/components/ui/RadarChart";
 
 type Props = {
   scores: Record<string, number>;

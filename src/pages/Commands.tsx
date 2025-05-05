@@ -147,18 +147,18 @@ export const Commands = () => {
 
   // Navega para o chat com o comando selecionado
   const handleCommandClick = (command: string) => {
-    // Salva no histórico
     const newHistory = [
       { command, timestamp: Date.now() },
-      ...commandHistory.slice(0, 9) // Mantém apenas os 10 mais recentes
+      ...commandHistory.slice(0, 9),
     ];
-    
+  
     setCommandHistory(newHistory);
-    localStorage.setItem('furiaChatHistory', JSON.stringify(newHistory));
-    
-    // Navega para o home com o comando
-    navigate('/', { state: { autoCommand: command } });
+    localStorage.setItem("furiaChatHistory", JSON.stringify(newHistory));
+  
+    // Redireciona com o comando
+    navigate("/", { state: { autoCommand: command } });
   };
+  
 
   return (
     <div className="p-6 min-h-screen text-white font-sans">

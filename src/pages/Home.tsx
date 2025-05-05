@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { TextInput } from "@/components/TextInput";
+import { TextInput } from "@/components/ui/TextInput";
 import { botResponses, dynamicResponses } from "@/data/botResponses";
 
 type Message = {

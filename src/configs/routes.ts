@@ -2,7 +2,6 @@ import Comments from "@/assets/icon/Comments.svg";
 import Console from "@/assets/icon/Console.svg";
 import Fire from "@/assets/icon/Fire.svg";
 import Help from "@/assets/icon/Help.svg";
-import LineChart from "@/assets/icon/LineChart.svg";
 import Customer from "@/assets/icon/Customer.svg";
 
 export type RouteGroup = {
@@ -47,12 +46,6 @@ export const routes: RouteConfig[] = [
     type: "route",
     path: "/quiz",
     icon: Help,
-  },
-  {
-    label: "Dashboard",
-    type: "route",
-    path: "/dashboard",
-    icon: LineChart,
   },
   {
     label: "Perfil",

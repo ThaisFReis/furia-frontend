@@ -1,8 +1,10 @@
 import { routes } from "@/configs/routes";
-import { Link } from "react-router-dom";
 import HideSidepanel from "@/assets/icon/HideSidepanel.svg";
 import ShowSidepanel from "@/assets/icon/ShowSidepanel.svg";
 import furia from "@/assets/icon/furia.svg";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 type SidebarProps = {
   isOpen: boolean;
@@ -10,6 +12,15 @@ type SidebarProps = {
 };
 
 export const Sidebar = ({ isOpen, toggle }: SidebarProps) => {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem("is_authenticated");
+    navigate("/login");
+  };
+
   return (
     <div
       className={`absolute left-0 top-0 h-full ${
@@ -64,6 +75,15 @@ export const Sidebar = ({ isOpen, toggle }: SidebarProps) => {
               </Link>
             ) : null
           )}
+
+          {/* Logout Button */}
+          <div
+            onClick={handleLogout}
+            className="flex items-center p-2 cursor-pointer hover:bg-[#222] mt-auto mb-5"
+          >
+            <LogoutIcon className="w-6 h-6 mx-4" />
+            {isOpen && <p className="whitespace-nowrap">Logout</p>}
+          </div>
         </div>
       )}
     </div>
